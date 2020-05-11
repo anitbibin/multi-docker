@@ -3,20 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t anitbibin1202/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t anitbibin/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run anitbibin1202/react-test npm test -- --coverage
+  - docker run anitbibin/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t anitbibin1202/multi-client ./client
-  - docker build -t anitbibin1202/multi-server ./server
-  - docker build -t anitbibin1202/multi-worker ./worker    
-  - docker build -t anitbibin1202/multi-nginx ./nginx  
+  - docker build -t anitbibin/multi-client ./client
+  - docker build -t anitbibin/multi-server ./server
+  - docker build -t anitbibin/multi-worker ./worker    
+  - docker build -t anitbibin/multi-nginx ./nginx  
 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
-  - docker push anitbibin1202/multi-client
-  - docker push anitbibin1202/multi-server
-  - docker push anitbibin1202/multi-worker
-  - docker push anitbibin1202/multi-nginx
+  - docker push anitbibin/multi-client
+  - docker push anitbibin/multi-server
+  - docker push anitbibin/multi-worker
+  - docker push anitbibin/multi-nginx
